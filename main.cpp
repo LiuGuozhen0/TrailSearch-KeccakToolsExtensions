@@ -700,8 +700,8 @@ void extendTrailsOutsideTheKernel(KeccakFPropagation::DCorLC DCLC, unsigned int 
 void generateTrailCoresInTheKernel()
 {
     unsigned int width = 1600;
-    unsigned int maxCost = 8;
-    unsigned int alpha = 0; // 1 to generate states with w_0 smaller than maxCost
+    unsigned int maxCost = 36;
+    unsigned int alpha = 2; // 1 to generate states with w_0 smaller than maxCost
     unsigned int beta = 1;  // 1 to generate states with w_1 smaller than maxCost
     //unsigned int laneSize = width / 25;
 
@@ -771,6 +771,39 @@ void backwardExtendOutsideKernel(){
 
 }
 
+void generate3RTrailCoreWeight36()
+{
+  unsigned int width = 1600;
+  unsigned int nrRounds = 3;
+  unsigned int maxWeight = 36;
+  string inFileNamew0 = "DCKeccakF-1600-TwoRoundTrailCoresInKernel-Below-8-w0";
+  string inFileNamew1 = "DCKeccakF-1600-TwoRoundTrailCoresInKernel-Below-8-w1";
+  string inFileNamew0w1 = "DCKeccakF-1600-TwoRoundTrailCoresOutsideKernel-Below27-w0w1";
+  string inFileName2w0w1 = "DCKeccakF-1600-TwoRoundTrailCoresOutsideKernel-Below36-2w0w1";
+  string inFileNamew02w1 = "DCKeccakF-1600-TwoRoundTrailCoresOutsideKernel-Below36-w02w1";
+  string inFileNameInKernel2w0w1 = "DCKeccakF-1600-TwoRoundTrailCoresInKernel-Below-36-2w0w1";
+  string inFileNameInKernelw02w1 = "DCKeccakF-1600-TwoRoundTrailCoresInKernel-Below-36-w02w1";
+  // //|K|N|, |K| ---> |N|, forward extension outside kernel
+  // extendTrailsOutsideTheKernel(KeccakFPropagation::DC, width, inFileNamew0, maxWeight, nrRounds, false);
+  // //|K|N|, |K| <--- |N|, backward extension in kernel
+  // extendTrailsInTheKernel(KeccakFPropagation::DC, width, inFileNamew0w1, maxWeight, nrRounds, true);
+  //
+  // //|N|K|, |N| --> |K|, forward extension in dirInKernel
+  // extendTrailsInTheKernel(KeccakFPropagation::DC, width, inFileNamew0w1, maxWeight, nrRounds, false);
+  // //|N|K|, |N| <-- |K|, backward extension outside dirInKernel
+  // extendTrailsOutsideTheKernel(KeccakFPropagation::DC, width, inFileNamew1, maxWeight, nrRounds, true);
+  //
+  // //|N|N|, |N| --> |N|, forward extension outside kernel
+  // extendTrailsOutsideTheKernel(KeccakFPropagation::DC, width, inFileName2w0w1, maxWeight, nrRounds, false);
+  // //|N|N|, |N| <-- |N|, backward extension outside kernel
+  // extendTrailsOutsideTheKernel(KeccakFPropagation::DC, width, inFileNamew02w1, maxWeight, nrRounds, true);
+
+  //|K|K|, |K| --> |K|, forward extension in Kernel
+  extendTrailsInTheKernel(KeccakFPropagation::DC, width, inFileNameInKernel2w0w1, maxWeight, nrRounds, false);
+  //|K|K|, |K| <-- |K|, backward extension in Kernel
+  extendTrailsInTheKernel(KeccakFPropagation::DC, width, inFileNameInKernelw02w1, maxWeight, nrRounds, true);
+}
+
 // this function computes the number of round differentials per weight for a given Keccak width
 void weightDistributions(unsigned int width)
 {
@@ -834,14 +867,16 @@ int main(int argc, char *argv[])
         //testAllKeyakv2Instances();
         //testAllKetjev2Instances();
         //backwardExtendInKernel();
-        //forwardExtendInKernel();
+        // forwardExtendInKernel();
         //backwardExtendOutsideKernel();
         //forwardExtendOutsideKernel();
-        //generateTrailCoresOutsideTheKernel();
-        //generateTrailCoresInTheKernel();
+        // generateTrailCoresOutsideTheKernel();
+        // generateTrailCoresInTheKernel();
         //weightDistributions(200);
         //testKravatte();
         //testKravatteModes();
+
+        generate3RTrailCoreWeight36();
     }
     catch(Exception e) {
         cout << e.reason << endl;
