@@ -1,7 +1,7 @@
 /*
 KeccakTools
 
-This code implements the techniques described in FSE2017 paper 
+This code implements the techniques described in FSE2017 paper
 "New techniques for trail bounds and application to differential trails in Keccak"
 by Silvia Mella, Joan Daemen and Gilles Van Assche.
 http://tosc.iacr.org/
@@ -195,7 +195,7 @@ bool ColumnsSet::checkColumnOverlapping(const std::vector<Column>& unitList, Col
     (void)unitList;
 	current.entangled = false;
 	//unsigned int i = 0;
-	
+
 	// AEC cannot overlap another AEC
 	// and can overlap only an odd-0 column
 			if (current.affected){
@@ -216,7 +216,7 @@ bool ColumnsSet::checkColumnOverlapping(const std::vector<Column>& unitList, Col
 
 	// if UOC cannot overlap another UOC
 	//if (current.odd){
-    else{    
+    else{
 		if ((getBit(cache.C, current.position.x, current.position.z) & 1))
 					return true;
 		if ((getBit(cache.D, current.position.x, current.position.z) & 1)){
@@ -895,7 +895,7 @@ unsigned int TwoRoundTrailCoreCostBoundFunction::getCost(const vector<Column>& u
 						else
 					n0++;
 					}
-					
+
 					else{
 						// deactivate its bit after lambda
 						BitPosition p(unitList[i].position.x, 0, unitList[i].position.z);
@@ -1077,7 +1077,7 @@ bool TwoRoundTrailCoreCostBoundFunction::canAfford(const vector<Column>& unitLis
 			}
 		}
 
-		// count the number of odd-0 
+		// count the number of odd-0
 		unsigned int n0 = 0;
 
 		for (unsigned int i = 0; i<unitList.size(); i++){

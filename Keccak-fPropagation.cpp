@@ -503,7 +503,7 @@ UINT64 KeccakFPropagation::displayTrailsAndCheck(const string& fileNameIn, ostre
                     parent.checkLCTrail(trail);
                 if (trail.totalWeight >= countPerWeight.size())
                     countPerWeight.resize(trail.totalWeight+1, 0);
-                countPerWeight[trail.totalWeight]++;
+                countPerWeight[trail.totalWeight]++;//count the number of trails of per weight
                 if (trail.states.size() >= countPerLength.size())
                     countPerLength.resize(trail.states.size()+1, 0);
                 countPerLength[trail.states.size()]++;
@@ -511,14 +511,14 @@ UINT64 KeccakFPropagation::displayTrailsAndCheck(const string& fileNameIn, ostre
             }
             catch(TrailException) {
             }
-        }
+        }//first count the number of trail cores and their length
         if (totalCount == 0) {
             fout << "No trails found in file " << fileNameIn << "!" << endl;
             return totalCount;
         }
         minWeight = 0;
         while((minWeight < countPerWeight.size()) && (countPerWeight[minWeight] == 0))
-            minWeight++;
+            minWeight++;//Obtain the minimum weight of all trail cores
         for(unsigned int i=0; i<countPerLength.size(); i++)
             if (countPerLength[i] > 0)
                 fout << dec << countPerLength[i] << " trails of length " << dec << i << " read and checked." << endl;
