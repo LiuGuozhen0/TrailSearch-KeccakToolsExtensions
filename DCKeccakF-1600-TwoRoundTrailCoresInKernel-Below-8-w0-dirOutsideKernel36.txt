@@ -1,0 +1,32 @@
+DC/LC analysis of Keccak-f[1600]
+Differential cryptanalysis
+
+1 trails of length 3 read and checked.
+Minimum weight: 32
+       1 trails of weight 32
+
+Showing the trails up to weight 32 (in no particular order).
+
+3-round differential trail core of total weight 32
+* Profile related to χ:
+Propagation weights:    4   4  24
+Active rows:                2  12
+* Profile related to θ:
+Gaps:          0   1
+Kernel:        k   N
+Round 0 would have weight at least 4
+Round 1 (weight 4, θ-gap 0) after previous χ, then before χ (2 active rows):
+.....       |       .....   .....    
+X....       |       .....   .....    
+..+.. z^63  |  z^55 .....   ..... z^7
+X....       |       ...X.   .....    
+.....       |       .....   .X...    
+-----     
+Round 2 (weight 24, θ-gap 1) after previous χ, then before χ (12 active rows):
+     .....   .....      |  X....     .....     .....     ....X    .....      .....      .....   .....    .....   .....     .....     ...X.   
+     .....   .....      |  .....     .....     .....     .....    ..X..      .....      .....   .....    .X...   .....     .....     .....   
+z^55 .....   ..... z^7  |  ..+.. z^5 ..... z^7 X.... z^3 ..... zz ..... z^12 ....X z^13 .....   ..... zz .....   ..... z^3 ..... z^3 ..... zz
+     ...X.   .....      |  .....     .....     .....     .....    .....      .....      ...X.   .....    .....   ..X..     .X...     .....   
+     .....   .X...      |  .....     X....     .....     .....    .....      .....      .....   .X...    .....   .....     .....     .....   
+     ---O-   -O---    
+

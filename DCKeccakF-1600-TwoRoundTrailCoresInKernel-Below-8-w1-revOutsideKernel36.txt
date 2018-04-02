@@ -1,0 +1,4 @@
+DC/LC analysis of Keccak-f[1600]
+Differential cryptanalysis
+
+No trails found in file DCKeccakF-1600-TwoRoundTrailCoresInKernel-Below-8-w1-revOutsideKernel36!
