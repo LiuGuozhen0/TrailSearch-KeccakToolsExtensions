@@ -3,10 +3,11 @@
 
 void generateValidSlicePattern(void)
 {
-  unsigned int slicePatternCase[12][6] = {
-    {2,1,2,0,0,0},{3,1,1,1,0,0},//3-bit active slice
-    {2,1,3,0,0,0},{2,2,2,0,0,0},{3,1,1,2,0,0},{4,1,1,1,1,0},//4-bit active slice
-    {2,1,4,0,0,0},{2,2,3,0,0,0},{3,1,1,3,0,0},{3,1,2,2,0,0},{4,1,1,1,2,0},{5,1,1,1,1,1}//5-bit active slice
+  unsigned int slicePatternCase[21][6] = {
+    {2,1,2,0,0,0},{3,1,1,1,0,0},//3-bit active slice, 2 kinds
+    {2,1,3,0,0,0},{2,2,2,0,0,0},{3,1,1,2,0,0},{4,1,1,1,1,0},//4-bit active slice, 4 kinds
+    {2,1,4,0,0,0},{2,2,3,0,0,0},{3,1,1,3,0,0},{3,1,2,2,0,0},{4,1,1,1,2,0},{5,1,1,1,1,1},//5-bit active slice, 6 kinds
+    {2,1,5,0,0,0},{2,2,4,0,0,0},{2,3,3,0,0,0},{3,1,1,4,0,0},{3,1,2,3,0,0},{3,2,2,2,0,0},{4,1,1,1,3,0},{4,1,1,2,2,0},{5,1,1,1,1,2}//6-bit active slice, 9 kinds
   };
   std::vector<unsigned int> set1 = {1, 2, 4, 8, 16};
   std::vector<unsigned int> set2 = {3, 5, 6, 9, 10, 12, 17, 18, 20, 24};
@@ -17,7 +18,7 @@ void generateValidSlicePattern(void)
   // print_DDT(DDTOutput);
 
   int Case, nSbox;
-  for (Case = 0; Case < 12; Case++) {
+  for (Case = 0; Case < 21; Case++) {
     cout << "Case " << Case << ": " << slicePatternCase[Case][0] << " active sboxes, " << endl;
     std::vector<std::vector<unsigned int> > activeSbox;
     for (nSbox = 1; nSbox <= slicePatternCase[Case][0]; nSbox++) {

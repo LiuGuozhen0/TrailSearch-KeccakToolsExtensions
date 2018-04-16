@@ -1,0 +1,33 @@
+In the process of programming, there are tons of problems and new points.
+It's helpful if we can document and grasp them.
+
+2/4/2018
+1. g++ -std=c++11 *.cpp
+2. bitset, 1) #include <bitset>
+           2) bitset<5> input1(value);
+           3) cout << input1;
+3. the container vector
+
+6/4/2018
+1. switch clause in C++
+switch(expression)
+{
+  case constant-expression:
+    statements;
+    break;
+  case constant-expression:
+    statements;
+    break;
+
+  default:
+  statements;
+}
+
+The statements must be one block. Usually we need to append an extra {} around the block;
+
+2. multiset and set
+problem Description: We have a bunch of input patterns, i.e., the input values of active sboxes, and some patterns overlap with each other.
+Only the unique patterns are needed so we need to eliminate all the overlapped patterns.
+set can help us in this situation.
+(multiset) can store the input values of active sboxes according to an order, i.e., (value1, value2, value3).
+Then we store all the multi sets in (set), as (set) only stores distinct values, we can eliminate the identical combinations.
