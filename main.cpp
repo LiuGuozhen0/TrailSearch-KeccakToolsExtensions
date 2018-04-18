@@ -843,7 +843,8 @@ int main(int argc, char *argv[])
         //weightDistributions(200);
         //testKravatte();
         //testKravatteModes();
-        generateValidSlicePattern();
+        // generateValidSliceValuePattern();
+        vectorOf2Peers();
     }
     catch(Exception e) {
         cout << e.reason << endl;
