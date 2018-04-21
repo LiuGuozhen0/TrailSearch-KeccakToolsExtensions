@@ -273,7 +273,7 @@ void generateValidSliceValuePattern(void)
   }
 }
 
-void genInputforAllActiveSbox(DualVector& slicePatternCase,TriVector& activeSboxAllCase) {
+void genInputforAllActiveSbox(DualVector slicePatternCase,TriVector& activeSboxAllCase) {
   std::vector<unsigned int> set1{1, 2, 4, 8, 16};
   std::vector<unsigned int> set2{3, 5, 6, 9, 10, 12, 17, 18, 20, 24};
   std::vector<unsigned int> set3{7, 11, 13, 14, 19, 21, 22, 25, 26, 28};
@@ -318,7 +318,7 @@ void genInputforAllActiveSbox(DualVector& slicePatternCase,TriVector& activeSbox
   }
 }
 
-void printValueSlicePattern(multisetSet& valuePattern){
+void printValueSlicePattern(multisetSet valuePattern){
   cout << valuePattern.size() << " value patterns in total!" << endl;
   multisetSet :: iterator itSet;
   for ( itSet = valuePattern.begin(); itSet != valuePattern.end(); itSet++) {
@@ -588,13 +588,13 @@ void generateValidSliceValuePattern(unsigned int nBit, set <multiset <unsigned i
   */
 
 void vectorOf2Peers(void) {
-  unsigned int offset[5][5] = {//[x][y] fashion, my state is [y][x]fashion
-        {0, 36, 3, 41, 18},
-        {1, 44, 10, 45, 2},
-        {62, 6, 43, 15, 61},
-        {28, 55, 25, 21, 56},
-        {27, 20, 39, 8, 14}
-    };
+  // unsigned int offset[5][5] = {//[x][y] fashion, my state is [y][x]fashion
+  //       {0, 36, 3, 41, 18},
+  //       {1, 44, 10, 45, 2},
+  //       {62, 6, 43, 15, 61},
+  //       {28, 55, 25, 21, 56},
+  //       {27, 20, 39, 8, 14}
+  //   };
     set <multiset <unsigned int, greater <unsigned int> > > sliceValuePattern2;
     generateValidSliceValuePattern(2, sliceValuePattern2);
     printValueSlicePattern(sliceValuePattern2);
@@ -610,4 +610,196 @@ void vectorOf2Peers(void) {
     // multisetSet sliceValuePattern5;
     // generateValidSliceValuePattern(5, sliceValuePattern5);
     // printValueSlicePattern(sliceValuePattern5);
+}
+
+// DualVector sbox2YPosition {
+//   {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 0}, {1, 2}, {1,3}, {1, 4}, {2, 0}, {2, 1},
+//   {2, 3}, {2, 4}, {3, 0}, {3, 1}, {3, 2}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3}
+// };
+// DualVector sbox3YPosition {
+//   {0, 1, 2}, {0, 1, 3}, {0, 1, 4}, {0, 2, 1}, {0, 2, 3}, {0, 2, 4}, {0, 3, 1}, {0, 3, 2}, {0, 3, 4}, {0, 4, 1},
+//   {0, 4, 2}, {0, 4, 3}, {1, 0, 2}, {1, 0, 3}, {1, 0, 4}, {1, 2, 0}, {1, 2, 3}, {1, 2, 4}, {1, 3, 0}, {1, 3, 2},
+//   {1, 3, 4}, {1, 4, 0}, {1, 4, 2}, {1, 4, 3}, {2, 0, 1}, {2, 0, 3}, {2, 0, 4}, {2, 1, 0}, {2, 1, 3}, {2, 1, 4},
+//   {2, 3, 0}, {2, 3, 1}, {2, 3, 4}, {2, 4, 0}, {2, 4, 1}, {2, 4, 3}, {3, 0, 1}, {3, 0, 2}, {3, 0, 4}, {3, 1, 0},
+//   {3, 1, 2}, {3, 1, 4}, {3, 2, 0}, {3, 2, 1}, {3, 2, 4}, {3, 4, 0}, {3, 4, 1}, {3, 4, 2}, {4, 0, 1}, {4, 0, 2},
+//   {4, 0, 3}, {4, 1, 0}, {4, 1, 2}, {4, 1, 3}, {4, 2, 0}, {4, 2, 1}, {4, 2, 3}, {4, 3, 0}, {4, 3, 1}, {4, 3, 2}
+// };
+// DualVector sbox4YPosition {
+//   {0, 1, 2, 3}, {0, 1, 2, 4}, {0, 1, 3, 2}, {0, 1, 3, 4}, {0, 1, 4, 2}, {0, 1, 4, 3},
+//   {0, 2, 1, 3}, {0, 2, 1, 4}, {0, 2, 3, 1}, {0, 2, 3, 4}, {0, 2, 4, 1}, {0, 2, 4, 3},
+//   {0, 3, 1, 2}, {0, 3, 1, 4}, {0, 3, 2, 1}, {0, 3, 2, 4}, {0, 3, 4, 1}, {0, 3, 4, 2},
+//   {0, 4, 1, 2}, {0, 4, 1, 3}, {0, 4, 2, 1}, {0, 4, 2, 3}, {0, 4, 3, 1}, {0, 4, 3, 2},
+//   {1, 0, 2, 3}, {1, 0, 2, 4}, {1, 0, 3, 2}, {1, 0, 3, 4}, {1, 0, 4, 2}, {1, 0, 4, 3},
+//   {1, 2, 0, 3}, {1, 2, 0, 4}, {1, 2, 3, 0}, {1, 2, 3, 4}, {1, 2, 4, 0}, {1, 2, 4, 3},
+//   {1, 3, 0, 2}, {1, 3, 0, 4}, {1, 3, 2, 0}, {1, 3, 2, 4}, {1, 3, 4, 0}, {1, 3, 4, 2},
+//   {1, 4, 0, 2}, {1, 4, 0, 3}, {1, 4, 2, 0}, {1, 4, 2, 3}, {1, 4, 3, 0}, {1, 4, 3, 2},
+//   {2, 0, 1, 3}, {2, 0, 1, 4}, {2, 0, 3, 1}, {2, 0, 3, 4}, {2, 0, 4, 1}, {2, 0, 4, 3},
+//   {2, 1, 0, 3}, {2, 1, 0, 4}, {2, 1, 3, 0}, {2, 1, 3, 4}, {2, 1, 4, 0}, {2, 1, 4, 3},
+//   {2, 3, 0, 1}, {2, 3, 0, 4}, {2, 3, 1, 0}, {2, 3, 1, 4}, {2, 3, 4, 0}, {2, 3, 4, 1},
+//   {2, 4, 0, 1}, {2, 4, 0, 3}, {2, 4, 1, 0}, {2, 4, 1, 3}, {2, 4, 3, 0}, {2, 4, 3, 1},
+//   {3, 0, 1, 2}, {3, 0, 1, 4}, {3, 0, 2, 1}, {3, 0, 2, 4}, {3, 0, 4, 1}, {3, 0, 4, 2},
+//   {3, 1, 0, 2}, {3, 1, 0, 4}, {3, 1, 2, 0}, {3, 1, 2, 4}, {3, 1, 4, 0}, {3, 1, 4, 2},
+//   {3, 2, 0, 1}, {3, 2, 0, 4}, {3, 2, 1, 0}, {3, 2, 1, 4}, {3, 2, 4, 0}, {3, 2, 4, 1},
+//   {3, 4, 0, 1}, {3, 4, 0, 2}, {3, 4, 1, 0}, {3, 4, 1, 2}, {3, 4, 2, 0}, {3, 4, 2, 1},
+//   {4, 0, 1, 2}, {4, 0, 1, 3}, {4, 0, 2, 1}, {4, 0, 2, 3}, {4, 0, 3, 1}, {4, 0, 3, 2},
+//   {4, 1, 0, 2}, {4, 1, 0, 3}, {4, 1, 2, 0}, {4, 1, 2, 3}, {4, 1, 3, 0}, {4, 1, 3, 2},
+//   {4, 2, 0, 1}, {4, 2, 0, 3}, {4, 2, 1, 0}, {4, 2, 1, 3}, {4, 2, 3, 0}, {4, 2, 3, 1},
+//   {4, 3, 0, 1}, {4, 3, 0, 2}, {4, 3, 1, 0}, {4, 3, 1, 2}, {4, 3, 2, 0}, {4, 3, 2, 1}
+// };
+// DualVector sbox5YPosition {
+//   {0, 1, 2, 3, 4}, {0, 1, 2, 4, 3}, {0, 1, 3, 2, 4}, {0, 1, 3, 4, 2}, {0, 1, 4, 2, 3}, {0, 1, 4, 3, 2},
+//   {0, 2, 1, 3, 4}, {0, 2, 1, 4, 3}, {0, 2, 3, 1, 4}, {0, 2, 3, 4, 1}, {0, 2, 4, 1, 3}, {0, 2, 4, 3, 1},
+//   {0, 3, 1, 2, 4}, {0, 3, 1, 4, 2}, {0, 3, 2, 1, 4}, {0, 3, 2, 4, 1}, {0, 3, 4, 1, 2}, {0, 3, 4, 2, 1},
+//   {0, 4, 1, 2, 3}, {0, 4, 1, 3, 2}, {0, 4, 2, 1, 3}, {0, 4, 2, 3, 1}, {0, 4, 3, 1, 2}, {0, 4, 3, 2, 1},
+//   {1, 0, 2, 3, 4}, {1, 0, 2, 4, 3}, {1, 0, 3, 2, 4}, {1, 0, 3, 4, 2}, {1, 0, 4, 2, 3}, {1, 0, 4, 3, 2},
+//   {1, 2, 0, 3, 4}, {1, 2, 0, 4, 3}, {1, 2, 3, 0, 4}, {1, 2, 3, 4, 0}, {1, 2, 4, 0, 3}, {1, 2, 4, 3, 0},
+//   {1, 3, 0, 2, 4}, {1, 3, 0, 4, 2}, {1, 3, 2, 0, 4}, {1, 3, 2, 4, 0}, {1, 3, 4, 0, 2}, {1, 3, 4, 2, 0},
+//   {1, 4, 0, 2, 3}, {1, 4, 0, 3, 2}, {1, 4, 2, 0, 3}, {1, 4, 2, 3, 0}, {1, 4, 3, 0, 2}, {1, 4, 3, 2, 0},
+//   {2, 0, 1, 3, 4}, {2, 0, 1, 4, 3}, {2, 0, 3, 1, 4}, {2, 0, 3, 4, 1}, {2, 0, 4, 1, 3}, {2, 0, 4, 3, 1},
+//   {2, 1, 0, 3, 4}, {2, 1, 0, 4, 3}, {2, 1, 3, 0, 4}, {2, 1, 3, 4, 0}, {2, 1, 4, 0, 3}, {2, 1, 4, 3, 0},
+//   {2, 3, 0, 1, 4}, {2, 3, 0, 4, 1}, {2, 3, 1, 0, 4}, {2, 3, 1, 4, 0}, {2, 3, 4, 0, 1}, {2, 3, 4, 1, 0},
+//   {2, 4, 0, 1, 3}, {2, 4, 0, 3, 1}, {2, 4, 1, 0, 3}, {2, 4, 1, 3, 0}, {2, 4, 3, 0, 1}, {2, 4, 3, 1, 0},
+//   {3, 0, 1, 2, 4}, {3, 0, 1, 4, 2}, {3, 0, 2, 1, 4}, {3, 0, 2, 4, 1}, {3, 0, 4, 1, 2}, {3, 0, 4, 2, 1},
+//   {3, 1, 0, 2, 4}, {3, 1, 0, 4, 2}, {3, 1, 2, 0, 4}, {3, 1, 2, 4, 0}, {3, 1, 4, 0, 2}, {3, 1, 4, 2, 0},
+//   {3, 2, 0, 1, 4}, {3, 2, 0, 4, 1}, {3, 2, 1, 0, 4}, {3, 2, 1, 4, 0}, {3, 2, 4, 0, 1}, {3, 2, 4, 1, 0},
+//   {3, 4, 0, 1, 2}, {3, 4, 0, 2, 1}, {3, 4, 1, 0, 2}, {3, 4, 1, 2, 0}, {3, 4, 2, 0, 1}, {3, 4, 2, 1, 0},
+//   {4, 0, 1, 2, 3}, {4, 0, 1, 3, 2}, {4, 0, 2, 1, 3}, {4, 0, 2, 3, 1}, {4, 0, 3, 1, 2}, {4, 0, 3, 2, 1},
+//   {4, 1, 0, 2, 3}, {4, 1, 0, 3, 2}, {4, 1, 2, 0, 3}, {4, 1, 2, 3, 0}, {4, 1, 3, 0, 2}, {4, 1, 3, 2, 0},
+//   {4, 2, 0, 1, 3}, {4, 2, 0, 3, 1}, {4, 2, 1, 0, 3}, {4, 2, 1, 3, 0}, {4, 2, 3, 0, 1}, {4, 2, 3, 1, 0},
+//   {4, 3, 0, 1, 2}, {4, 3, 0, 2, 1}, {4, 3, 1, 0, 2}, {4, 3, 1, 2, 0}, {4, 3, 2, 0, 1}, {4, 3, 2, 1, 0}
+// };
+
+void inversePi(unsigned int X, unsigned int Y, unsigned int & x, unsigned int & y){
+  x = (1*X + 3*Y)%5;
+  y = (1*X + 0*Y)%5;
+}
+
+void Pi(unsigned int x, unsigned int y, unsigned int & X, unsigned int & Y){
+  X = (0*x + 1*y)%5;
+  Y = (2*x + 3*y)%5;
+}
+
+
+void determineXforStartingSlice2Bits(ValuePatternmultiset oneValuePattern, BitPosition & bQ1, BitPosition & bP2){
+  int sboxCounter = 0;
+  ValuePatternmultiset :: iterator sboxiterator;
+  for ( sboxiterator = oneValuePattern.begin(); sboxiterator != oneValuePattern.end(); sboxiterator++) {
+    for (int bitIndicator = 0; bitIndicator < 5; bitIndicator++) {
+      if (((*sboxiterator) >> bitIndicator) & 1) {
+        if (sboxCounter == 0) {
+          bQ1.x = bitIndicator;
+        }
+        if (sboxCounter == 1) {
+          bP2.x = bitIndicator;
+        }
+      }
+    }
+    sboxCounter++;
+  }
+}
+
+bool validPatterFilter2Bits(BitPosition bP, BitPosition bQ){
+  if ((bP.x == bQ.x) && (bP.y != bQ.y))
+  return true;
+  else
+  return false;
+}
+
+bool rhoFilter2Peers(BitPosition aP1, BitPosition aQ1, BitPosition aP2, BitPosition aQ2){
+  unsigned int offset[5][5] = {//[x][y] fashion, my state is [y][x]fashion
+        {0, 36, 3, 41, 18},
+        {1, 44, 10, 45, 2},
+        {62, 6, 43, 15, 61},
+        {28, 55, 25, 21, 56},
+        {27, 20, 39, 8, 14}
+    };
+  unsigned int v1, v2;
+  v1 = (offset[aP1.x][aP1.y] - offset[aQ1.x][aQ1.y] + 64)%64;
+  v2 = (offset[aQ2.x][aQ2.y] - offset[aP2.x][aP2.y] + 64)%64;
+
+  if (v1 == v2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void testPrintStateB2Peers(BitPosition bQ1, BitPosition bP2, BitPosition bQ2, BitPosition bP1){
+  cout << "   Q1    P2     Q2     P1   " << endl;
+  cout << "(" << bQ1.x << ", " << bQ1.y << ") ";
+  cout << "(" << bP2.x << ", " << bP2.y << ") ";
+  cout << "(" << bQ2.x << ", " << bQ2.y << ") ";
+  cout << "(" << bP1.x << ", " << bP1.y << ") " << endl << endl;
+}
+
+void testPrintStateA2Peers(BitPosition aP1, BitPosition aQ1, BitPosition aP2, BitPosition aQ2){
+  cout << "   P1    Q1     P2     Q2   " << endl;
+  cout << "(" << aP1.x << ", " << aP1.y << ") ";
+  cout << "(" << aQ1.x << ", " << aQ1.y << ") ";
+  cout << "(" << aP2.x << ", " << aP2.y << ") ";
+  cout << "(" << aQ2.x << ", " << aQ2.y << ") " << endl;
+}
+
+//Vortex search of only two peers.
+void vortexSearchTest(void) {
+  DualVector sbox2YPosition {
+    {0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 0}, {1, 2}, {1,3}, {1, 4}, {2, 0}, {2, 1},
+    {2, 3}, {2, 4}, {3, 0}, {3, 1}, {3, 2}, {3, 4}, {4, 0}, {4, 1}, {4, 2}, {4, 3}
+  };//index of choosing 2 out of 5 sboxes with order
+  multisetSet sliceValuePattern2;//the valid value patterns of 2 peers
+  generateValidSliceValuePattern(2, sliceValuePattern2);
+
+  BitPosition aP1, aQ1, aP2, aQ2;//the four bits at state a
+  BitPosition bP1, bQ1, bP2, bQ2;//the four bits at state b
+
+  int slicePatternCounter;
+  multisetSet ::iterator oneValuePattern;
+
+  int valuePatternCounter = 0, testPatternNumber = 0, testTotalNumber = 0, test4XYNumber = 0;//test
+  for ( oneValuePattern = sliceValuePattern2.begin(); oneValuePattern != sliceValuePattern2.end(); oneValuePattern++) {
+    cout << "The " << valuePatternCounter++ << "-th value pattern to be checked." << endl;//test
+    testPatternNumber = 0;//test
+    test4XYNumber = 0;//test
+    determineXforStartingSlice2Bits((*oneValuePattern), bQ1, bP2);
+    for ( slicePatternCounter = 0; slicePatternCounter < sbox2YPosition.size(); slicePatternCounter++) {
+      testPatternNumber++;//test
+      bQ1.y = sbox2YPosition[slicePatternCounter][0];
+      bP2.y = sbox2YPosition[slicePatternCounter][1];
+      cout << "A slice pattern for the same value pattern!" << endl;
+
+      inversePi(bQ1.x, bQ1.y, aQ1.x, aQ1.y);
+      inversePi(bP2.x, bP2.y, aP2.x, aP2.y);
+      aP1.x = aQ1.x;
+      aQ2.x = aP2.x;
+
+      for (int peer1Counter = 0; peer1Counter < 5; peer1Counter++) {
+        if (peer1Counter != aQ1.y) {
+          aP1.y = peer1Counter;
+          for (int peer2Counter = 0; peer2Counter < 5; peer2Counter++) {
+            if (peer2Counter != aP2.y) {
+              aQ2.y = peer2Counter;
+              test4XYNumber++;//test
+              testTotalNumber++;//test
+
+              Pi(aP1.x, aP1.y, bP1.x, bP1.y);
+              Pi(aQ2.x, aQ2.y, bQ2.x, bQ2.y);
+
+              testPrintStateA2Peers(aP1, aQ1, aP2, aQ2);
+              testPrintStateB2Peers(bQ1, bP2, bQ2, bP1);
+
+              if (validPatterFilter2Bits(bP1, bQ2)) {
+                cout << "P1 and Q2 form orbital at b!" << endl;
+                if (rhoFilter2Peers(aP1, aQ1, aP2, aQ2)) {
+                  cout << "Find one valid 4-(x,y) !" << endl;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    cout << "Pattern numbers for each value pattern of the starting slice is : " << testPatternNumber << endl;
+    cout << "The number of 4-(X,Y) for each value pattern is: " << test4XYNumber << endl;
+  }
+  cout << "In total, " << testTotalNumber << " 4_(X,Y) are checked!" << endl;
 }
