@@ -39,11 +39,11 @@ bool BitPosition::operator==(const BitPosition& otherPoint) const
 
 bool BitPosition::operator<(const BitPosition& otherPoint) const
 {
-    if (x <  otherPoint.x) return true;
-    else if (x == otherPoint.x) {
+    if (z <  otherPoint.z) return true;
+    else if (z == otherPoint.z) {
         if (y <  otherPoint.y) return true;
         else if (y == otherPoint.y) {
-            if (z < otherPoint.z) return true;
+            if (x < otherPoint.x) return true;
         }
     }
     return false;
