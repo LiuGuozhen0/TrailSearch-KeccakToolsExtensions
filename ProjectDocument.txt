@@ -31,3 +31,113 @@ Only the unique patterns are needed so we need to eliminate all the overlapped p
 set can help us in this situation.
 (multiset) can store the input values of active sboxes according to an order, i.e., (value1, value2, value3).
 Then we store all the multi sets in (set), as (set) only stores distinct values, we can eliminate the identical combinations.
+
+16/4/2018
+Question: How to detect duplicates within a set?
+if(my_set.inert("value").second == false)
+{
+  do_something_for_duplicate();
+}
+
+17/4/2018
+typedef std::vector<vector<unsigned int>> myVector
+
+##Implementing Valid Value Pattern Search##
+The process is divided into two stages.
+First, the possible input differences are generated for a particular case, i.e., n sboxes and m bits.
+Second, the value patterns of 2 sboxes, 3 sboxes, 4 sboxes, and 5 sboxes are constructed.
+
+18/4/2018
+Compile with makefile.
+
+20/4/2018
+Goal: Organize the test implementation of searching vortex of two peers in a formal class.
+      And produce the code to search vortex of three peers based on the class.
+The specifications of the class:
+
+23/4/2018
+Making a thorough and complete tutorial on something is not my goal.
+My goal is to implement the algorithm of searching trail cores with in kernel states at C.
+
+Don't know the reason, but when I didn't set constructor or destructor it always gives errors of
+": pointers being freed was not allocated***...".
+
+Very wired "Bus error: 10".
+
+25/4/2018
+gcc is a compiler by GNU project.
+gdb is a debugger by GNU project.
+
+How to know if gdb is installed?
+--- which gdb
+Use which to find out where gdb is when you call it and this presumes you have it installed.
+
+--- gdb
+--- -bash: gdb: command not found
+The above output literally means gdb isn't in $PATH or is not executable.
+
+26/4/2018
+It does takes me almost one day to simply install GDB, the debugger.
+Normally it won't takes so long. However, as MacOS doesn't provide support to gdb there are various problems occur.
+
+How to install GDB?
+---brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/9ec9fb27a33698fc7636afce5c1c16787e9ce3f3/Formula/gdb.rb
+---brew rm gdb
+---brew uninstall --force gdb
+
+Basic Usage.
+--- gdb ./vortexSearchtest or gdb ./vortexSearchtest
+---(gdb) run
+
+27/4/2018
+Homebrew installs the stuff you need that Apple doesn't.
+Instead of having to download, configure, and install something yourself, all you need to do is run one command,
+and Homebrew will take care of the rest for you.
+
+Finally the weird "Bus error : 10" bug has been resolved.
+The error wasn't incurred from the code but from the g++ compile of MacOS Sierra.
+After replacing the "g++" with "Clang++", and adding an "-stdlib=libc++", there is not "Bus error" in
+the terminal commandline. When debugging with GDB, it outputs:Inferior 1 (process 31513) exited normally,
+which informs the program has finished gracefully.
+
+From the struggles on programming and compiling these days, I gain basic understanding on
+1) c++ 2) compiling 3) gdb 4)makefile 5)commandline 6)how to when you run into problems and finally
+much more confidence on myself.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bound.

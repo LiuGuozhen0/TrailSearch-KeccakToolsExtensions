@@ -1,7 +1,11 @@
- CC = g++ -std=c++11
+# it's also correct to set -std=gnu++11
+ CC = clang++ -std=c++11 -stdlib=libc++
 
  #CFLAGS = -std=c++11 -Wall
- CFLAGS = -c -ggdb -Wall
+ # -g : compile code with debugging information
+ # -On(O1, O2, O3) : compile code with optimization.
+ # the larger the number, the more optimizations are performed while compiling
+ CFLAGS = -c -ggdb -fstack-protector-all -Wall
 
  objects = Keccak-f.o Keccak-f25LUT.o genKATShortMsg.o Farfalle.o duplex.o \
  bitstring.o transformations.o spongetree.o sponge.o progress.o padding.o Motorist.o \
@@ -11,18 +15,19 @@
  Keccak-fTrailCore3Rounds.o Keccak-fState.o Keccak-fPositions.o Keccak-fParts.o \
  Keccak-fParityBounds.o Keccak-fParity.o Keccak-fEquations.o Keccak-fDisplay.o \
  Keccak-fDCLC.o Keccak-fDCEquations.o Keccak-fCodeGen.o Keccak-fAffineBases.o \
- misc.o kkeccak.o Keccak-fTree.o Keccak-fPropagation.o inKernelSearch.o main.o
+ misc.o kkeccak.o Keccak-fTree.o Keccak-fPropagation.o trailCoreInKernelAtC.o main.o \
+
 
 #vortexSearch following the "-o" is the created executable file.
 #Generally, make only performs the first target
 #the other targets are placed as the prerequisites of the first target
 #One exception is the "clean" target, which will be directly run by typing "make clean" in command line
 vortexSearch: present main.o
-		$(CC) $(objects) -o vortexSearch
+		$(CC) $(objects) -o vortexSearchtest
 
 #the target "present" is not a file but an action
 present:
-		$(CC) $(CFLAGS) inKernelSearch.cpp
+		$(CC) $(CFLAGS)  trailCoreInKernelAtC.cpp
 
 
 main.o:
@@ -44,4 +49,4 @@ original:
 		misc.cpp kkeccak.cpp Keccak-fTree.cpp Keccak-fPropagation.cpp
 
 clean:
-		rm -rf *.o vortexSearch
+		rm -rf *.o vortexSearchtest

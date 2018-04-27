@@ -34,7 +34,9 @@ http://creativecommons.org/publicdomain/zero/1.0/
 #include "Kravatte.h"
 #include "Kravatte-test.h"
 #include "KravatteModes-test.h"
-#include "inKernelSearch.h"
+// #include "inKernelSearch.h"
+
+#include "trailCoreInKernelAtC.h"//newly defined class
 
 using namespace std;
 
@@ -843,8 +845,8 @@ int main(int argc, char *argv[])
         //weightDistributions(200);
         //testKravatte();
         //testKravatteModes();
-        // generateValidSliceValuePattern();
-        vectorOf2Peers();
+        myTrailCoreInKernelAtC test;
+        test.vortexSearch3Peers();
     }
     catch(Exception e) {
         cout << e.reason << endl;
