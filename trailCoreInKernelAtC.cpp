@@ -17,7 +17,7 @@ myTrailCoreInKernelAtC::myTrailCoreInKernelAtC(){
 }
 
 myTrailCoreInKernelAtC::~myTrailCoreInKernelAtC(){
-  ;
+  // ;
 }
 
 void myTrailCoreInKernelAtC::genInputforAllActiveSbox(DualVector slicePatternCase,TriVector& activeSboxAllCase) {
@@ -693,14 +693,14 @@ void myTrailCoreInKernelAtC::vortexSearch3Peers(void){
   cout << endl << "All the state patterns with duplications:" << endl;
   printOriginalStatePatternSet();
 
-  cout << endl << "State patterns with only natural duplication eliminated:" << endl;
-  printStatePatternToScreen(statePatternWithoutDistanceCheck);
+  // cout << endl << "State patterns with only natural duplication eliminated:" << endl;
+  // printStatePatternToScreen(statePatternWithoutDistanceCheck);
 
   cout << endl << "The actual state patterns without any duplication:" << endl;
   printStatePatternToScreen(allUniqueStatePattern);
 
-  cout << endl << "Check the expanded space:  " << endl;
-  printStatePatternToScreen(statePatternDistanceCheckSpace);
+  // cout << endl << "Check the expanded space:  " << endl;
+  // printStatePatternToScreen(statePatternDistanceCheckSpace);
   return;
 }
 

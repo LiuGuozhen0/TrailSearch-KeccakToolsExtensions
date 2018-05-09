@@ -815,6 +815,31 @@ void weightDistributions(unsigned int width)
         fout << "w: " << i << " log: " << log(wattab1[i]/laneSize) / log(2) <<  " n : " << wattab1[i]/laneSize << endl;
 }
 
+// void generateInKernelAtCstate_PreviousMethod(void){
+//   std::vector<SliceValue> backgroundAtA(laneSize, 0);
+//   std::vector<SliceValue> aTabooAtB(laneSize, 0);
+//   unsigned int aMaxWeight = 52;
+//   KeccakFDCLC aParent(1600);
+//   cout << "aParent is constructed" << endl;
+//   KeccakFPropagation::DCorLC aDCorLC;
+//   aDCorLC = KeccakFPropagation::DC;
+//
+//   TrailCoreInKernelAtC trailInCP(backgroundAtA, aTabooAtB, aMaxWeight, aParent, aDCorLC);
+//   cout << "an object of TrailCoreInKernelAtC in constructed!" << endl;
+//
+//   // KeccakFTrailExtension keccakFTE(aParent, aDCorLC);
+//   // cout << "an object of KeccakFTrailExtension is constructed!" << endl;
+//   string fileName = "test.txt";
+//
+//   // KeccakFTE.knownSmallWeightStates->saveToFile(keccakFTE, fileName);
+//
+//   while (trailInCP.next()) {
+//     trailInCP.writeFile(fileName);
+//   }
+//
+//   // extendTrails(aDCorLC, 1600, fileName, 3, 250, true);
+// }
+
 int main(int argc, char *argv[])
 {
     try {
