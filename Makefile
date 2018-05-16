@@ -9,21 +9,26 @@ Keccak-fParts.o Keccak-fPositions.o Keccak-fPropagation.o Keccak-fState.o \
 Keccak-fTrailCore3Rounds.o Keccak-fTrailCoreInKernelAtC.o Keccak-fTrailCoreParity.o \
 Keccak-fTrailCoreRows.o Keccak-fTrailExtension.o Keccak-fTrailExtensionBasedOnParity.o \
 Keccak-fTrails.o Keccak-fTree.o \
+Keccak.o KeccakCrunchyContest.o Ketjev2-test.o Ketjev2.o Keyakv2.o Keyakv2-test.o Kravatte.o Kravatte-test.o KravatteModes-test.o \
 monkey.o Motorist.o padding.o progress.o sponge.o spongetree.o transformations.o \
 main.o
 
 
 inKernelSearch_PreviousMethods: main current
 		$(CC) $(objects) -o inKernelAtCTrailCoreSearch_PreviousMethods
+
 main:
 		$(CC) $(CFLAGS) main.cpp
 
 current:
+		$(CC) $(CFLAGS) Keccak-fTrailCoreInKernelAtC.cpp
 
 original:
+		$(CC) $(CFLAGS) bitstring.cpp duplex.cpp Farfalle.cpp genKATShortMsg.cpp \
 		Keccak-f.cpp Keccak-f25LUT.cpp Keccak-fAffineBases.cpp Keccak-fCodeGen.cpp \
 		Keccak-fDCEquations.cpp Keccak-fDCLC.cpp Keccak-fDisplay.cpp Keccak-fEquations.cpp \
 		Keccak-fParity.cpp Keccak-fParityBounds.cpp \
+		Keccak-fParts.cpp Keccak-fPositions.cpp Keccak-fPropagation.cpp Keccak-fState.cpp \
 		Keccak-fTrailCore3Rounds.cpp Keccak-fTrailCoreParity.cpp \
 		Keccak-fTrailCoreRows.cpp Keccak-fTrailExtension.cpp Keccak-fTrailExtensionBasedOnParity.cpp \
 		Keccak-fTrails.cpp Keccak-fTree.cpp \

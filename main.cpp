@@ -832,6 +832,7 @@ void generateInKernelAtCstate_PreviousMethod(void){
   string fileName = "InKernelAtC_TrailCoreSearch_test.txt";
 
   // KeccakFTE.knownSmallWeightStates->saveToFile(keccakFTE, fileName);
+
   while (trailInCP.next()) {
     trailInCP.writeFile(fileName);
     // cout << "Find a valid trail! " << endl;
