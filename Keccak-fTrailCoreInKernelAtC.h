@@ -166,6 +166,10 @@ public:
       */
     bool next();
 
+    /**
+      */
+    void writeFile(const string & fileName);
+
     /** This method returns a constant reference to the current vortex being iterated.
      */
     const CoreInfo& getTopCoreInfo() const;

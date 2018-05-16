@@ -420,3 +420,21 @@ ostream& operator<<(ostream& fout, const TrailCoreInKernelAtC& aL)
     fout << endl;
     return fout;
 }
+
+void TrailCoreInKernelAtC::writeFile(const string& fileName)
+{
+	ofstream fout(fileName.c_str(),ios::app);
+	Trail trail;
+    trail.append(outCore.back().stateAtB, outCore.back().weightAtB);
+    trail.save(fout);
+
+	/*ofstream fout(fileName.c_str());
+	size_t len = outCore.size();
+	cout<<len<<endl;
+
+    for (size_t i =0; i < len; i ++) {
+		Trail trail;
+		trail.append(outCore.back().stateAtB, outCore.back().weightAtB);
+		trail.save(fout);
+    }*/
+}

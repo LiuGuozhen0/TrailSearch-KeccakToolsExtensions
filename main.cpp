@@ -35,6 +35,8 @@ http://creativecommons.org/publicdomain/zero/1.0/
 #include "Kravatte-test.h"
 #include "KravatteModes-test.h"
 
+#include "Keccak-fTrailCoreInKernelAtC.h"
+
 using namespace std;
 
 /** Example function that uses the Keccak-f[1600] permutation and its inverse.
@@ -812,6 +814,32 @@ void weightDistributions(unsigned int width)
         fout << "w: " << i << " log: " << log(wattab1[i]/laneSize) / log(2) <<  " n : " << wattab1[i]/laneSize << endl;
 }
 
+void generateInKernelAtCstate_PreviousMethod(void){
+  std::vector<SliceValue> backgroundAtA(64, 0);
+  std::vector<SliceValue> aTabooAtB(64, 0);
+  unsigned int aMaxWeight = 40;
+  cout << "Test: Hi there!" << endl;
+  KeccakFDCLC aParent(1600);
+  cout << "aParent is constructed" << endl;
+  KeccakFPropagation::DCorLC aDCorLC;
+  aDCorLC = KeccakFPropagation::DC;
+
+  TrailCoreInKernelAtC trailInCP(backgroundAtA, aTabooAtB, aMaxWeight, aParent, aDCorLC);
+  cout << "an object of TrailCoreInKernelAtC in constructed!" << endl;
+
+  // KeccakFTrailExtension keccakFTE(aParent, aDCorLC);
+  // cout << "an object of KeccakFTrailExtension is constructed!" << endl;
+  string fileName = "InKernelAtC_TrailCoreSearch_test.txt";
+
+  // KeccakFTE.knownSmallWeightStates->saveToFile(keccakFTE, fileName);
+  while (trailInCP.next()) {
+    trailInCP.writeFile(fileName);
+    // cout << "Find a valid trail! " << endl;
+  }
+
+  // extendTrails(aDCorLC, 1600, fileName, 3, 250, true);
+}
+
 int main(int argc, char *argv[])
 {
     try {
@@ -842,6 +870,8 @@ int main(int argc, char *argv[])
         //weightDistributions(200);
         //testKravatte();
         //testKravatteModes();
+
+        generateInKernelAtCstate_PreviousMethod();
     }
     catch(Exception e) {
         cout << e.reason << endl;
