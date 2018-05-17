@@ -5,7 +5,7 @@
  # -g : compile code with debugging information
  # -On(O1, O2, O3) : compile code with optimization.
  # the larger the number, the more optimizations are performed while compiling
- CFLAGS = -c -ggdb -fstack-protector-all -Wall
+ CFLAGS = -c -ggdb -fstack-protector-all -Wall 
 
  objects = Keccak-f.o Keccak-f25LUT.o genKATShortMsg.o Farfalle.o duplex.o \
  bitstring.o transformations.o spongetree.o sponge.o progress.o padding.o Motorist.o \
