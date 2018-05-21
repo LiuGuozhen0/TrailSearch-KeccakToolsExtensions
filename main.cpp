@@ -872,6 +872,7 @@ int main(int argc, char *argv[])
         //testKravatteModes();
         myTrailCoreInKernelAtC test;
         test.vortexSearch3Peers();
+//        cout << "Hello" << endl;
     }
     catch(Exception e) {
         cout << e.reason << endl;
