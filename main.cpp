@@ -34,9 +34,8 @@ http://creativecommons.org/publicdomain/zero/1.0/
 #include "Kravatte.h"
 #include "Kravatte-test.h"
 #include "KravatteModes-test.h"
-// #include "inKernelSearch.h"
 
-#include "trailCoreInKernelAtC.h"//newly defined class
+#include "myKeccak-fTrailCoreInKernelAtC.hpp"
 
 using namespace std;
 
@@ -870,9 +869,10 @@ int main(int argc, char *argv[])
         //weightDistributions(200);
         //testKravatte();
         //testKravatteModes();
-        myTrailCoreInKernelAtC test;
-        test.vortexSearch3Peers();
-//        cout << "Hello" << endl;
+
+        myTrailCoreInKernelAtC testObject;
+        testObject.test3Peers2Slices();
+        cout << "Hello!" << endl;
     }
     catch(Exception e) {
         cout << e.reason << endl;
